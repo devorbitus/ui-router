@@ -263,8 +263,11 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
       transition: null
     };
 
-    $state.reload = function reload() {
-      $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: false });
+    $state.reload = function reload(doNotify) {
+      if(doNotify == undefined){
+          doNotify = false;
+      }
+      $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: doNotify });
     };
 
     $state.go = function go(to, params, options) {
